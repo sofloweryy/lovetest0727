@@ -294,7 +294,7 @@ button.submit-btn:active {
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="mainContainer">
   <h1>💖 测测！你正缘的星座 + MBTI</h1>
   <p class="subtitle">✨ 命中注定的灵魂伴侣 · 精准匹配你的理想恋人</p>
 
@@ -543,10 +543,22 @@ button.submit-btn:active {
 </div>
 
 <script>
-// 页面加载时自动清除网址栏的 ?code=xxx 等参数，保持网址干净
+// 1. 页面加载时自动核销与清空网址
 window.addEventListener('DOMContentLoaded', () => {
+  // 清空网址栏多余参数
   if (window.location.search) {
     window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
+  // 检查本地是否已经完成过测试（核销锁定）
+  const hasCompleted = localStorage.getItem('crush_test_completed');
+  if (hasCompleted === 'true') {
+    document.getElementById('mainContainer').innerHTML = `
+      <div style="text-align: center; padding: 40px 10px;">
+        <h2 style="color: #ff4d6d; margin-bottom: 15px; font-size: 22px;">⚠️ 该测试链接已使用</h2>
+        <p style="color: #666; font-size: 14px; line-height: 1.6;">每个链接仅限使用一次，您已完成过该测试或该名额已被核销。</p>
+      </div>
+    `;
   }
 });
 
@@ -629,6 +641,9 @@ function calculateMatch() {
     descItems[2].innerText = `⚠️ 避坑小提醒：因为你骨子里带点【${derivedJ === 'J' ? '规划控/细节怪' : '随性派/自由灵魂'}】，上头时容易小纠结。偶尔放平心态、把主动权交给对方，会有意想不到的惊喜体验哦~`;
     descItems[3].innerText = `💡 互动升温秘诀：多与对方分享那些有趣有意义的日常片段！充分发挥你 ${derivedE === 'E' ? '热情开朗的优势' : '细腻周到的小心思'}，能让感情迅速升温！`;
   }
+
+  // 点击生成结果的一瞬间，写入本地缓存（正式完成核销锁定）
+  localStorage.setItem('crush_test_completed', 'true');
 
   const resultDiv = document.getElementById('result');
   resultDiv.style.display = 'block';
