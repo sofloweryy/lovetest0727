@@ -549,7 +549,7 @@ button.submit-btn:active {
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 页面加载时：自动完成“无参数干净链接”的权限校验与名额获取
+  // 页面加载时：自动完成权限校验与名额核销
   window.addEventListener('DOMContentLoaded', async () => {
     const loadingView = document.getElementById('loadingView');
     const contentView = document.getElementById('contentView');
@@ -580,14 +580,17 @@ button.submit-btn:active {
 
       const targetCodeObj = unusedCodes[0];
 
-      // 3. 将名额的 status 更新为 'used'
+      // 3. 将名额状态更新为 'used'，并记录精确的核销时间 (used_at)
       const { error: updateError } = await supabaseClient
         .from('codes')
-        .update({ status: 'used' })
+        .update({ 
+          status: 'used',
+          used_at: new Date().toISOString() 
+        })
         .eq('code', targetCodeObj.code);
 
       if (updateError) {
-        console.error('状态更新失败', updateError);
+        console.error('状态与时间更新失败', updateError);
       }
 
       // 4. 抢名额成功！在当前用户的浏览器里种下永久通行证
