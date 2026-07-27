@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>测测！你正缘的星座 + MBTI</title>
+<title>💖 测测！你正缘的星座 + MBTI</title>
 <style>
 :root {
-  --primary-color: #ff4d6d;
-  --primary-hover: #ff758f;
-  --bg-color: #fff0f3;
-  --card-bg: #ffffff;
+  --primary-gradient: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
+  --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #f3e8ff 100%);
+  --card-bg: rgba(255, 255, 255, 0.95);
   --text-main: #2b2d42;
-  --text-sub: #6c757d;
+  --text-sub: #8d99ae;
   --accent-bg: #fff5f7;
   --border-color: #ffccd5;
 }
@@ -25,7 +24,7 @@
 }
 
 body {
-  background-color: var(--bg-color);
+  background: var(--bg-gradient);
   color: var(--text-main);
   display: flex;
   justify-content: center;
@@ -36,36 +35,42 @@ body {
 
 .container {
   background: var(--card-bg);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
   width: 100%;
-  max-width: 480px;
-  padding: 24px;
+  max-width: 500px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 h1 {
-  font-size: 22px;
-  color: var(--primary-color);
-  margin-bottom: 6px;
+  font-size: 24px;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
   text-align: center;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: 0.5px;
 }
 
 p.subtitle {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-sub);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   text-align: center;
+  font-weight: 500;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   text-align: left;
 }
 
 label.question-title {
   display: block;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--text-main);
@@ -74,70 +79,79 @@ label.question-title {
 
 select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  padding: 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
   background-color: var(--accent-bg);
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--text-main);
   outline: none;
+  font-weight: 600;
 }
 
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
+  gap: 12px;
+  padding: 14px;
   background-color: var(--accent-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 13.5px;
-  color: #333;
-  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #4a4e69;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.4;
+  font-weight: 500;
+}
+
+.radio-label:hover {
+  background-color: #ffe3e8;
+  border-color: #ff758f;
 }
 
 .radio-label input {
-  accent-color: var(--primary-color);
+  accent-color: #ff4d6d;
+  transform: scale(1.2);
 }
 
 button.submit-btn {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  padding: 16px;
+  background: var(--primary-gradient);
   color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 14px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
-  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
-  transition: all 0.2s;
+  margin-top: 12px;
+  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.35);
+  transition: transform 0.2s, opacity 0.2s;
+  letter-spacing: 1px;
 }
 
-button.submit-btn:hover {
-  opacity: 0.95;
+button.submit-btn:active {
+  transform: scale(0.98);
 }
 
 #result {
-  margin-top: 24px;
+  margin-top: 28px;
   display: none;
 }
 
 .share-card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 24px 20px;
-  box-shadow: 0 12px 32px rgba(255, 77, 109, 0.18);
-  border: 1.5px solid #ffe5e9;
+  padding: 26px 22px;
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.18);
+  border: 2px solid #ffe5e9;
   position: relative;
   overflow: hidden;
 }
@@ -145,77 +159,80 @@ button.submit-btn:hover {
 .share-card::before {
   content: "";
   position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 120px;
-  height: 120px;
-  background: rgba(255, 77, 109, 0.08);
+  top: -50px;
+  right: -50px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 77, 109, 0.06);
   border-radius: 50%;
 }
 
 .poster-header {
   text-align: center;
   margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 18px;
+  border-bottom: 1.5px dashed var(--border-color);
 }
 
 .poster-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  background: var(--primary-gradient);
   color: #fff;
-  padding: 4px 14px;
+  padding: 5px 16px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(255, 77, 109, 0.25);
+  margin-bottom: 12px;
+  box-shadow: 0 3px 10px rgba(255, 77, 109, 0.3);
 }
 
 .user-badge {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-sub);
   margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .user-badge span {
-  color: var(--primary-color);
+  color: #ff4d6d;
   font-weight: bold;
 }
 
 .match-target {
-  font-size: 20px;
+  font-size: 21px;
   color: var(--text-main);
   font-weight: 900;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .match-target-highlight {
-  color: var(--primary-color);
-  font-size: 22px;
+  color: #ff4d6d;
+  font-size: 23px;
   display: block;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .score-badge {
-  background: #fff0f3;
-  border: 1px solid #ffccd5;
-  border-radius: 12px;
-  padding: 10px;
+  background: var(--accent-bg);
+  border: 1.5px solid #ffccd5;
+  border-radius: 14px;
+  padding: 12px;
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .score-num {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 900;
-  color: var(--primary-color);
+  color: #ff4d6d;
 }
 
 .score-sub {
-  font-size: 12px;
-  color: #888;
+  font-size: 12.5px;
+  color: var(--text-sub);
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .analysis-list {
@@ -226,53 +243,50 @@ button.submit-btn:hover {
 
 .analysis-item {
   background: #fff8f9;
-  border-left: 3px solid var(--primary-color);
-  border-radius: 0 10px 10px 0;
-  padding: 12px;
+  border-left: 3.5px solid #ff4d6d;
+  border-radius: 0 12px 12px 0;
+  padding: 14px;
 }
 
 .item-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 800;
-  color: var(--primary-color);
-  margin-bottom: 4px;
+  color: #ff4d6d;
+  margin-bottom: 5px;
 }
 
 .item-desc {
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.6;
-  color: #444;
+  color: #4a4e69;
+  font-weight: 500;
 }
 
 .poster-footer {
-  margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px solid #f8f8f8;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1.5px solid #f0f0f5;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.footer-brand {
-  text-align: left;
-}
-
 .footer-brand .brand-name {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: bold;
   color: var(--text-main);
 }
 
 .footer-brand .brand-sub {
-  font-size: 10px;
+  font-size: 10.5px;
   color: #aaa;
 }
 
 .screenshot-tip {
   background: #2b2d42;
   color: #fff;
-  font-size: 11px;
-  padding: 5px 10px;
+  font-size: 11.5px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-weight: bold;
 }
@@ -324,7 +338,7 @@ button.submit-btn:hover {
     </select>
   </div>
 
-  <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 18px 0;">
+  <hr style="border: 0; border-top: 1.5px dashed var(--border-color); margin: 20px 0;">
 
   <!-- 15 道题目 -->
   <div class="form-group">
@@ -529,6 +543,13 @@ button.submit-btn:hover {
 </div>
 
 <script>
+// 页面加载时自动清除网址栏的 ?code=xxx 等参数，保持网址干净
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.location.search) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+});
+
 // 正缘对应表
 const targetMap = {
   'INTJ': { type: 'ENFP 竞选者', zodiac: '双子座', trait: '活泼灵动、能带给你无限新鲜感' },
@@ -571,7 +592,6 @@ const weights = {
 function calculateMatch() {
   const zodiac = document.getElementById('zodiac').value;
 
-  // 1. 维度权重全量累加计算
   let scoreE = 0, scoreN = 0, scoreT = 0, scoreJ = 0;
   let hashVal = 0; 
 
@@ -579,38 +599,29 @@ function calculateMatch() {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     const val = selected ? selected.value : 'A';
     
-    // 权重累加
     const w = weights[`q${i}`][val];
     scoreE += w[0];
     scoreN += w[1];
     scoreT += w[2];
     scoreJ += w[3];
 
-    // 生成唯一特征哈希
     const valCode = val.charCodeAt(0);
     hashVal += valCode * (i * 3);
   }
 
-  // 根据真正的答题权重，精准判定MBTI的四字母
   const derivedE = scoreE >= 0 ? 'E' : 'I';
   const derivedN = scoreN >= 0 ? 'N' : 'S';
   const derivedT = scoreT >= 0 ? 'T' : 'F';
   const derivedJ = scoreJ >= 0 ? 'J' : 'P';
 
   const userRealMBTI = `${derivedE}${derivedN}${derivedT}${derivedJ}`;
-
-  // 2. 匹配对应正缘
   const matchResult = targetMap[userRealMBTI];
-
-  // 3. 计算随选项精确变动的匹配度 (范围 88.5% ~ 99.8%)
   const scoreNum = (88.5 + (hashVal % 113) / 10).toFixed(1);
 
-  // 4. 更新 DOM 显示
   document.getElementById('userAttr').innerText = `${userRealMBTI} × ${zodiac}`;
   document.getElementById('targetType').innerText = `${matchResult.type} × ${matchResult.zodiac}`;
   document.getElementById('scoreNum').innerText = `${scoreNum}%`;
 
-  // 5. 动态生成个性化分析报告
   const descItems = document.querySelectorAll('.item-desc');
   if (descItems.length >= 4) {
     descItems[0].innerText = `✨ 你的本命人格是【${userRealMBTI}】~ 最适合你的正缘对象，往往自带【${matchResult.trait}】的特质！在他面前你可以放心地展现真实自我。`;
@@ -619,7 +630,6 @@ function calculateMatch() {
     descItems[3].innerText = `💡 互动升温秘诀：多与对方分享那些有趣有意义的日常片段！充分发挥你 ${derivedE === 'E' ? '热情开朗的优势' : '细腻周到的小心思'}，能让感情迅速升温！`;
   }
 
-  // 6. 展现结果页面
   const resultDiv = document.getElementById('result');
   resultDiv.style.display = 'block';
   resultDiv.scrollIntoView({ behavior: 'smooth' });
