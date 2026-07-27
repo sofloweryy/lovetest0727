@@ -541,7 +541,7 @@ button.submit-btn:active {
 
 <script>
   // -------------------------------------------------------------
-  // Supabase 配置（已自动填入你的 URL 和你的密钥）
+  // Supabase 配置
   // -------------------------------------------------------------
   const SUPABASE_URL = 'https://hrgzmwtgpacdxifcevwy.supabase.co'; 
   const SUPABASE_ANON_KEY = 'sb_publishable_4XcXlLh77BtvmIajOGbpPA_T7d6b9fu';
@@ -554,21 +554,20 @@ button.submit-btn:active {
     const loadingView = document.getElementById('loadingView');
     const contentView = document.getElementById('contentView');
 
-    // 1. 检查当前浏览器本地是否已经有“通行证”（代表这个人之前自己进过、测过了）
+    // 1. 检查当前浏览器本地是否已经有“通行证”
     const localPassed = localStorage.getItem('my_crush_passed');
     if (localPassed === 'true') {
-      // 老用户直接放行，不消耗新名额
       loadingView.style.display = 'none';
       contentView.style.display = 'block';
       return;
     }
 
     try {
-      // 2. 如果是新用户，向 Supabase 数据库请求获取一个“未使用的名额”
+      // 2. 查询 status 为 'unused' 的名额
       const { data: unusedCodes, error: fetchError } = await supabaseClient
         .from('codes')
         .select('*')
-        .eq('is_used', false)
+        .eq('status', 'unused')
         .limit(1);
 
       if (fetchError || !unusedCodes || unusedCodes.length === 0) {
@@ -581,17 +580,17 @@ button.submit-btn:active {
 
       const targetCodeObj = unusedCodes[0];
 
-      // 3. 瞬间在数据库中将这个名额标记为“已使用（已核销）”
+      // 3. 将名额的 status 更新为 'used'
       const { error: updateError } = await supabaseClient
         .from('codes')
-        .update({ is_used: true, used_at: new Date() })
+        .update({ status: 'used' })
         .eq('code', targetCodeObj.code);
 
       if (updateError) {
         console.error('状态更新失败', updateError);
       }
 
-      // 4. 抢名额成功！在当前用户的浏览器里种下永久通行证，以后他再进也不会被拦住了
+      // 4. 抢名额成功！在当前用户的浏览器里种下永久通行证
       localStorage.setItem('my_crush_passed', 'true');
 
       // 5. 展示问卷内容
