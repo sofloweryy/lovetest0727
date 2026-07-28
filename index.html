@@ -555,7 +555,7 @@ button.submit-btn:active {
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 获取当前 URL 里的后缀参数，例如：index.html?code=abc123
+  // 获取当前 URL 里的后缀参数
   const urlParams = new URLSearchParams(window.location.search);
   const currentCode = urlParams.get('code');
 
@@ -586,7 +586,6 @@ button.submit-btn:active {
     const quizSection = document.getElementById('quizSection');
     const resultDiv = document.getElementById('result');
 
-    // 1. 校验是否携带了 code 后缀
     if (!currentCode) {
       loadingView.innerHTML = `
         <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 链接缺少专属凭证</h2>
@@ -595,7 +594,7 @@ button.submit-btn:active {
       return;
     }
 
-    // 2. 检查本地是否已经有“针对当前 code”保存过的测试结果
+    // 检查本地缓存
     const storageKey = `my_crush_result_${currentCode}`;
     const savedResultStr = localStorage.getItem(storageKey);
     if (savedResultStr) {
@@ -612,7 +611,7 @@ button.submit-btn:active {
       }
     }
 
-    // 3. 如果本地没有该 code 的测试记录，去数据库精确查询这个 code
+    // 查询数据库中的 code 状态
     try {
       const { data: codeRecords, error: fetchError } = await supabaseClient
         .from('codes')
@@ -623,14 +622,13 @@ button.submit-btn:active {
       if (fetchError || !codeRecords || codeRecords.length === 0) {
         loadingView.innerHTML = `
           <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 无效的测算链接</h2>
-          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">该专属后缀（${currentCode}）在数据库中不存在。</p>
+          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">该专属后缀在数据库中不存在。</p>
         `;
         return;
       }
 
       const targetCodeObj = codeRecords[0];
 
-      // 如果这个 code 已经被用过了，但在该设备又没有本地缓存
       if (targetCodeObj.status === 'used') {
         loadingView.innerHTML = `
           <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 该链接已被使用</h2>
@@ -639,19 +637,7 @@ button.submit-btn:active {
         return;
       }
 
-      // 4. 如果状态是 unused，立即核销并将状态更新为 used
-      const { error: updateError } = await supabaseClient
-        .from('codes')
-        .update({ 
-          status: 'used'
-        })
-        .eq('code', currentCode);
-
-      if (updateError) {
-        console.error('状态更新失败', updateError);
-      }
-
-      // 5. 放行显示答题表单
+      // 放行显示表单（注意：此时不提前更新状态，等用户点“生成海报”时再连同结果一起写入，防止用户交了钱但没做题导致链接失效）
       loadingView.style.display = 'none';
       contentView.style.display = 'block';
 
@@ -674,7 +660,7 @@ button.submit-btn:active {
     document.getElementById('desc3').innerText = data.desc3;
   }
 
-  function calculateMatch() {
+  async function calculateMatch() {
     const userRealMBTI = document.getElementById('mbti').value;
     const zodiacSelect = document.getElementById('zodiac').value;
 
@@ -687,7 +673,6 @@ button.submit-btn:active {
       return;
     }
 
-    // 检查15道题目是否全部作答
     for (let i = 1; i <= 15; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
       if (!selected) {
@@ -696,10 +681,8 @@ button.submit-btn:active {
       }
     }
 
-    // 使用固定的匹配对象查找
     const matchResult = targetMap[userRealMBTI] || { type: 'ENFP 竞选者', zodiac: '双子座', trait: '活泼灵动、能带给你无限新鲜感' };
     
-    // 生成一个完全由题目选项决定的固定哈希积分（确保相同答案结果绝对一致）
     let fixedHash = 0;
     for (let i = 1; i <= 15; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
@@ -725,7 +708,24 @@ button.submit-btn:active {
       desc3
     };
 
-    // 绑定当前 code 后缀独立保存结果
+    // 核心：当用户点击生成时，将状态更新为 used，并完整写回 used_at 和 result_data
+    try {
+      const { error: updateError } = await supabaseClient
+        .from('codes')
+        .update({ 
+          status: 'used',
+          used_at: new Date().toISOString(),
+          result_data: resultData
+        })
+        .eq('code', currentCode);
+
+      if (updateError) {
+        console.error('数据库更新失败', updateError);
+      }
+    } catch (e) {
+      console.error('提交异常', e);
+    }
+
     const storageKey = `my_crush_result_${currentCode}`;
     localStorage.setItem(storageKey, JSON.stringify(resultData));
 
