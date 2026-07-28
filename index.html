@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>测测另一半会是什么星座&MBTI</title>
+<title>💖 测测另一半会是什么星座&MBTI</title>
 <!-- 引入 Supabase 客户端 SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -126,7 +126,7 @@ body {
   100% { transform: translateY(-3px); }
 }
 
-/* 直接作为主内容流，去掉外层大白底容器 */
+/* 主内容流，无外层大卡片包裹 */
 .main-content {
   width: 100%;
   max-width: 500px;
@@ -460,8 +460,8 @@ button.submit-btn:active {
 
   <div id="contentView" style="display: none;">
     <div id="quizSection">
-      <h1>测测另一半会是什么星座&MBTI</h1>
-      <p class="subtitle">仅供娱乐，如引起矛盾概不负责（嘿嘿</p>
+      <h1>💖 测测另一半会是什么星座&MBTI</h1>
+      <p class="subtitle">仅供娱乐，如引起矛盾概不负责（嘿嘿😁</p>
 
       <div class="form-group">
         <label class="question-title">你的初始 MBTI 类型：</label>
@@ -665,7 +665,7 @@ button.submit-btn:active {
     <div id="result">
       <div class="share-card">
         <div class="poster-header">
-          <span class="poster-tag">星座与MBTI · 双重恋爱基因测算</span>
+          <span class="poster-tag">🔮 星座与MBTI · 双重恋爱基因测算</span>
           <div class="user-badge">我的性格：<span id="userAttr">ESTP × 白羊座</span></div>
           <div class="match-target">
             命中注定另一半
@@ -675,10 +675,10 @@ button.submit-btn:active {
 
         <div class="score-badge">
           <div class="score-num" id="scoreNum">98.6%</div>
-          <div class="score-sub">灵魂契合指数 · 命中注定的双向奔赴</div>
+          <div class="score-sub">💞 灵魂契合指数 · 命中注定的双向奔赴</div>
         </div>
 
-        <!-- 上下单列分析列表 -->
+        <!-- 上下单列分析列表（带回了原汁原味的 Emoji） -->
         <div class="analysis-list">
           <div class="analysis-item">
             <div class="item-title">另一半画像</div>
@@ -704,9 +704,9 @@ button.submit-btn:active {
         <div class="poster-footer">
           <div class="footer-brand">
             <div class="brand-name">测测另一半会是什么星座&MBTI</div>
-            <div class="brand-sub">仅供娱乐，如引起矛盾概不负责</div>
+            <div class="brand-sub">仅供娱乐，如引起矛盾概不负责（嘿嘿😁</div>
           </div>
-          <button class="contact-btn" onclick="showQRCode()">此处有惊喜</button>
+          <button class="contact-btn" onclick="showQRCode()">💬 此处有惊喜</button>
         </div>
       </div>
     </div>
@@ -716,7 +716,7 @@ button.submit-btn:active {
 <!-- 微信号弹窗部分 -->
 <div class="qr-modal" id="qrModal">
   <div class="qr-card">
-    <h3>联系美丽的开发者</h3>
+    <h3>💬 联系美丽的开发者</h3>
     <p>长按或点击下方复制微信号</p>
     <div class="wechat-box">SleepToSleepy</div>
     <button class="close-btn" onclick="hideQRCode()">马上去，我倒是要看看</button>
@@ -869,10 +869,10 @@ button.submit-btn:active {
     const userAttr = `${userRealMBTI} × ${zodiacSelect}`;
     const targetType = `${matchResult.type} × ${matchResult.zodiac}`;
     
-    const desc0 = `本命人格【${userRealMBTI}】的最佳正缘。对方自带【${matchResult.trait}】特质，能让你安心展现真实自我。`;
-    const desc1 = `双方磁场高度契合。在【${matchResult.zodiac}】的体贴关怀下，能为你带来极高的安全感与幸福感。`;
-    const desc2 = `思维节奏不同时偶尔会有小摩擦。学会多沟通与包容，感情会更加固若金汤。`;
-    const desc3 = `多与对方分享温馨治愈的日常片段，充分发挥你的真诚与温柔，让爱意迅速升温。`;
+    const desc0 = `✨ 你的本命人格是【${userRealMBTI}】~ 另一半往往自带【${matchResult.trait}】的特质！在他面前你可以放心施展真实自我。`;
+    const desc1 = `💖 你们的磁场非常契合！你在恋爱中非常看重深度共鸣与长久陪伴。在【${matchResult.zodiac}】的体贴关怀下，能为你带来极高的安全感与幸福感。`;
+    const desc2 = `⚠️ 避坑小提醒：因为你骨子里有着独特的思维节奏，上头时偶尔会有小摩擦。学会多沟通、多把包容给对方，感情会更加固若金汤哦~`;
+    const desc3 = `💡 互动升温秘诀：多与对方分享那些温馨治愈的日常片段！充分发挥你的真诚与温柔，能让彼此的爱意迅速升温！`;
 
     const resultData = {
       userAttr,
