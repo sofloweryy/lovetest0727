@@ -579,24 +579,6 @@ button.submit-btn:active {
     'ESFP': { type: 'ISTJ 物流师', zodiac: '摩羯座', trait: '严谨务实、一丝不苟且能帮你整理混乱的生活' }
   };
 
-  const weights = {
-    q1: { A: [0, 0, 1, 3], B: [1, 2, 0, -2], C: [2, 0, -2, -1], D: [-3, 1, 1, 0] },
-    q2: { A: [1, -1, -3, 0], B: [0, 1, 3, 2], C: [2, 0, 0, -1], D: [-2, 2, -3, -1] },
-    q3: { A: [2, -1, 2, 2], B: [-2, 1, 3, 1], C: [0, -1, -3, -2], D: [-3, 0, 1, 0] },
-    q4: { A: [2, 1, -2, -1], B: [1, -1, 3, 2], C: [0, 2, 0, -1], D: [-2, -2, -2, -3] },
-    q5: { A: [1, 3, -1, 0], B: [-2, -1, 1, 1], C: [2, 2, -2, -1], D: [0, -2, 3, 3] },
-    q6: { A: [1, -2, 0, 3], B: [-2, 2, 1, -3], C: [0, 1, 0, -1], D: [2, 0, 2, 3] },
-    q7: { A: [0, -3, 3, 2], B: [-1, 3, -3, 0], C: [3, 2, -1, -2], D: [1, -1, 2, 1] },
-    q8: { A: [2, -1, 2, 2], B: [-3, 0, -2, -3], C: [1, 2, -3, -1], D: [-2, 1, 2, 1] },
-    q9: { A: [1, -2, 3, 3], B: [3, 3, -1, -2], C: [-1, 0, -3, -1], D: [-3, 2, 3, 1] },
-    q10: { A: [-1, -2, -2, 0], B: [-3, 1, 1, -2], C: [2, 2, -3, 1], D: [0, 0, 3, 2] },
-    q11: { A: [3, -1, 0, 2], B: [-3, 0, 2, -1], C: [0, 1, -1, -2], D: [-2, 2, 0, 1] },
-    q12: { A: [-1, 0, 3, 0], B: [1, 2, -3, -2], C: [2, -2, 0, 3], D: [-3, 1, 2, -3] },
-    q13: { A: [0, 1, -2, 0], B: [-1, -2, 2, 3], C: [-2, 3, 1, -2], D: [2, -1, 1, 2] },
-    q14: { A: [2, 1, -2, -1], B: [-2, -2, 3, 3], C: [0, 2, 1, 2], D: [1, -1, -1, -3] },
-    q15: { A: [-2, 3, -3, -1], B: [0, -3, 2, 2], C: [1, 3, 2, 0], D: [2, 2, 0, -2] }
-  };
-
   // 页面加载时校验链接与核销状态
   window.addEventListener('DOMContentLoaded', async () => {
     const loadingView = document.getElementById('loadingView');
@@ -693,10 +675,10 @@ button.submit-btn:active {
   }
 
   function calculateMatch() {
-    const mbtiSelect = document.getElementById('mbti').value;
+    const userRealMBTI = document.getElementById('mbti').value;
     const zodiacSelect = document.getElementById('zodiac').value;
 
-    if (!mbtiSelect) {
+    if (!userRealMBTI) {
       alert('请先选择你的 MBTI 类型哦！');
       return;
     }
@@ -714,38 +696,24 @@ button.submit-btn:active {
       }
     }
 
-    let scoreE = 0, scoreN = 0, scoreT = 0, scoreJ = 0;
-    let hashVal = 0; 
-
+    // 使用固定的匹配对象查找
+    const matchResult = targetMap[userRealMBTI] || { type: 'ENFP 竞选者', zodiac: '双子座', trait: '活泼灵动、能带给你无限新鲜感' };
+    
+    // 生成一个完全由题目选项决定的固定哈希积分（确保相同答案结果绝对一致）
+    let fixedHash = 0;
     for (let i = 1; i <= 15; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
-      const val = selected.value;
-      
-      const w = weights[`q${i}`][val];
-      scoreE += w[0];
-      scoreN += w[1];
-      scoreT += w[2];
-      scoreJ += w[3];
-
-      hashVal += val.charCodeAt(0) * (i * 3);
+      fixedHash += selected.value.charCodeAt(0) * i;
     }
-
-    const derivedE = scoreE >= 0 ? 'E' : 'I';
-    const derivedN = scoreN >= 0 ? 'N' : 'S';
-    const derivedT = scoreT >= 0 ? 'T' : 'F';
-    const derivedJ = scoreJ >= 0 ? 'J' : 'P';
-
-    const userRealMBTI = `${derivedE}${derivedN}${derivedT}${derivedJ}`;
-    const matchResult = targetMap[userRealMBTI];
-    const scoreNum = (88.5 + (hashVal % 113) / 10).toFixed(1);
+    const scoreNum = (91.0 + (fixedHash % 85) / 10).toFixed(1);
 
     const userAttr = `${userRealMBTI} × ${zodiacSelect}`;
     const targetType = `${matchResult.type} × ${matchResult.zodiac}`;
     
     const desc0 = `✨ 你的本命人格是【${userRealMBTI}】~ 最适合你的正缘对象，往往自带【${matchResult.trait}】的特质！在他面前你可以放心地展现真实自我。`;
-    const desc1 = `💘 你们的磁场非常契合！你在恋爱中非常看重${derivedT === 'T' ? '高效有力的行动力与偏爱' : '满格的情绪价值和温柔共鸣'}。在【${matchResult.zodiac}】的体贴关怀下，能给你带来极高的安全感。`;
-    const desc2 = `⚠️ 避坑小提醒：因为你骨子里带点【${derivedJ === 'J' ? '规划控/细节怪' : '随性派/自由灵魂'}】，上头时容易小纠结。偶尔放平心态、把主动权交给对方，会有意想不到的惊喜体验哦~`;
-    const desc3 = `💡 互动升温秘诀：多与对方分享那些有趣有意义的日常片段！充分发挥你 ${derivedE === 'E' ? '热情开朗的优势' : '细腻周到的小心思'}，能让感情迅速升温！`;
+    const desc1 = `💘 你们的磁场非常契合！你在恋爱中非常看重深度共鸣与长久陪伴。在【${matchResult.zodiac}】的体贴关怀下，能为你带来极高的安全感与幸福感。`;
+    const desc2 = `⚠️ 避坑小提醒：因为你骨子里有着独特的思维节奏，上头时偶尔会有小摩擦。学会多沟通、多把包容给对方，感情会更加固若金汤哦~`;
+    const desc3 = `💡 互动升温秘诀：多与对方分享那些温馨治愈的日常片段！充分发挥你的真诚与温柔，能让彼此的爱意迅速升温！`;
 
     const resultData = {
       userAttr,
