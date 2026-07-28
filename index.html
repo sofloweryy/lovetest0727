@@ -274,13 +274,97 @@ button.submit-btn:active {
   color: #aaa;
 }
 
-.screenshot-tip {
+/* “点击联系”按钮样式 */
+.contact-btn {
   background: #2b2d42;
   color: #fff;
-  font-size: 11.5px;
-  padding: 6px 12px;
+  font-size: 12px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 12px rgba(43, 45, 66, 0.2);
+  transition: transform 0.2s, background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.contact-btn:active {
+  transform: scale(0.95);
+  background: #ff4d6d;
+}
+
+/* 微信号弹窗遮罩层及样式 */
+.qr-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-card {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 20px;
+  text-align: center;
+  width: 85%;
+  max-width: 310px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  position: relative;
+  animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.qr-card h3 {
+  font-size: 17px;
+  color: #2b2d42;
+  margin-bottom: 6px;
+}
+
+.qr-card p {
+  font-size: 12.5px;
+  color: #8d99ae;
+  margin-bottom: 16px;
+}
+
+/* 微信号展示文本框 */
+.wechat-box {
+  background: #fff0f3;
+  border: 1.5px dashed #ff4d6d;
+  color: #ff4d6d;
+  font-size: 16px;
+  font-weight: 900;
+  padding: 12px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  user-select: all;
+}
+
+.close-btn {
+  margin-top: 6px;
+  background: #2b2d42;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  width: 100%;
 }
 </style>
 </head>
@@ -538,28 +622,35 @@ button.submit-btn:active {
             <div class="brand-name">💕 命定正缘匹配度测试</div>
             <div class="brand-sub">找到属于你的灵魂共鸣点</div>
           </div>
-          <div class="screenshot-tip">📸 截图保存分享</div>
+          <!-- 点击联系按钮 -->
+          <button class="contact-btn" onclick="showQRCode()">💬 点击联系</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- 微信号弹窗部分 -->
+<div class="qr-modal" id="qrModal">
+  <div class="qr-card">
+    <h3>💬 联系主理人</h3>
+    <p>长按或点击下方复制微信号</p>
+    <!-- 显示微信号 -->
+    <div class="wechat-box">VX：SleepToSleepy</div>
+    <button class="close-btn" onclick="hideQRCode()">我知道了</button>
+  </div>
+</div>
+
 <script>
-  // -------------------------------------------------------------
   // Supabase 配置
-  // -------------------------------------------------------------
   const SUPABASE_URL = 'https://hrgzmwtgpacdxifcevwy.supabase.co'; 
   const SUPABASE_ANON_KEY = 'sb_publishable_4XcXlLh77BtvmIajOGbpPA_T7d6b9fu';
-  // -------------------------------------------------------------
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 获取当前 URL 里的后缀参数
   const urlParams = new URLSearchParams(window.location.search);
   const currentCode = urlParams.get('code');
 
-  // 正缘对应表
   const targetMap = {
     'INTJ': { type: 'ENFP 竞选者', zodiac: '双子座', trait: '活泼灵动、能带给你无限新鲜感' },
     'INTP': { type: 'ENTJ 指挥官', zodiac: '狮子座', trait: '气场强大、执行力强且能带你实现抱负' },
@@ -579,7 +670,15 @@ button.submit-btn:active {
     'ESFP': { type: 'ISTJ 物流师', zodiac: '摩羯座', trait: '严谨务实、一丝不苟且能帮你整理混乱的生活' }
   };
 
-  // 页面加载时校验链接与核销状态
+  // 控制弹窗的打开和关闭
+  function showQRCode() {
+    document.getElementById('qrModal').style.display = 'flex';
+  }
+
+  function hideQRCode() {
+    document.getElementById('qrModal').style.display = 'none';
+  }
+
   window.addEventListener('DOMContentLoaded', async () => {
     const loadingView = document.getElementById('loadingView');
     const contentView = document.getElementById('contentView');
@@ -594,7 +693,6 @@ button.submit-btn:active {
       return;
     }
 
-    // 检查本地缓存
     const storageKey = `my_crush_result_${currentCode}`;
     const savedResultStr = localStorage.getItem(storageKey);
     if (savedResultStr) {
@@ -611,7 +709,6 @@ button.submit-btn:active {
       }
     }
 
-    // 查询数据库中的 code 状态
     try {
       const { data: codeRecords, error: fetchError } = await supabaseClient
         .from('codes')
@@ -637,7 +734,6 @@ button.submit-btn:active {
         return;
       }
 
-      // 放行显示表单（注意：此时不提前更新状态，等用户点“生成海报”时再连同结果一起写入，防止用户交了钱但没做题导致链接失效）
       loadingView.style.display = 'none';
       contentView.style.display = 'block';
 
@@ -708,7 +804,6 @@ button.submit-btn:active {
       desc3
     };
 
-    // 核心：当用户点击生成时，将状态更新为 used，并完整写回 used_at 和 result_data
     try {
       const { error: updateError } = await supabaseClient
         .from('codes')
