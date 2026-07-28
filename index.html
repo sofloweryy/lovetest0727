@@ -440,7 +440,6 @@ button.submit-btn:active {
   user-select: all;
 }
 
-/* 改为精致粉嫩渐变样式的弹窗按钮 */
 .close-btn {
   background: var(--primary-gradient);
   color: #fff;
@@ -678,7 +677,7 @@ button.submit-btn:active {
         </div>
       </div>
 
-      <button class="submit-btn" onclick="calculateMatch()">生成命定正缘分享海报 📑</button>
+      <button class="submit-btn" onclick="calculateMatch()">查看结果 ✨</button>
     </div>
 
     <!-- 结果展示区 -->
@@ -751,7 +750,6 @@ button.submit-btn:active {
   const urlParams = new URLSearchParams(window.location.search);
   const currentCode = urlParams.get('code');
 
-  // 为每一种 MBTI 完美定制专属的另一半画像、默契、避坑与升温建议
   const targetMap = {
     'INTJ': { 
       type: 'ENFP 竞选者', 
@@ -1000,7 +998,7 @@ button.submit-btn:active {
     for (let i = 1; i <= 15; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
       if (!selected) {
-        alert(`请完成第 ${i} 道题目再生成海报哦！`);
+        alert(`请完成第 ${i} 道题目再查看结果哦！`);
         return;
       }
     }
