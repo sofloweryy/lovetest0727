@@ -32,62 +32,60 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 16px;
+  padding: 12px;
 }
 
 .container {
   background: var(--card-bg);
   backdrop-filter: blur(10px);
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
   width: 100%;
   max-width: 500px;
-  padding: 28px;
+  padding: 16px 20px;
   border: 1px solid rgba(255, 255, 255, 0.8);
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 21px;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   text-align: center;
   font-weight: 900;
   letter-spacing: 0.5px;
 }
 
 p.subtitle {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-sub);
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   text-align: center;
   font-weight: 500;
-  line-height: 1.4;
 }
 
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   text-align: left;
 }
 
 label.question-title {
   display: block;
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: var(--text-main);
-  line-height: 1.4;
 }
 
 select {
   width: 100%;
-  padding: 14px;
+  padding: 10px 12px;
   border: 1.5px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 10px;
   background-color: var(--accent-bg);
-  font-size: 14.5px;
+  font-size: 13.5px;
   color: var(--text-main);
   outline: none;
   font-weight: 600;
@@ -96,22 +94,21 @@ select {
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px;
+  gap: 10px;
+  padding: 10px 12px;
   background-color: var(--accent-bg);
-  border: 1.5px solid var(--border-color);
-  border-radius: 12px;
+  border: 1.2px solid var(--border-color);
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   color: #4a4e69;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  line-height: 1.4;
+  transition: all 0.2s;
   font-weight: 500;
 }
 
@@ -122,22 +119,21 @@ select {
 
 .radio-label input {
   accent-color: #ff4d6d;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 button.submit-btn {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background: var(--primary-gradient);
   color: #fff;
   border: none;
-  border-radius: 14px;
-  font-size: 17px;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 12px;
-  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.35);
-  transition: transform 0.2s, opacity 0.2s;
+  margin-top: 8px;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.35);
   letter-spacing: 1px;
 }
 
@@ -146,24 +142,24 @@ button.submit-btn:active {
 }
 
 #result {
-  margin-top: 28px;
+  margin-top: 10px;
   display: none;
 }
 
+/* 一屏海报优化 */
 .share-card {
   background: #ffffff;
-  border-radius: 20px;
-  padding: 26px 22px;
-  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.18);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.15);
   border: 2px solid #ffe5e9;
   position: relative;
-  overflow: hidden;
 }
 
 .poster-header {
   text-align: center;
-  margin-bottom: 20px;
-  padding-bottom: 18px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
   border-bottom: 1.5px dashed var(--border-color);
 }
 
@@ -171,19 +167,17 @@ button.submit-btn:active {
   display: inline-block;
   background: var(--primary-gradient);
   color: #fff;
-  padding: 5px 16px;
-  border-radius: 20px;
-  font-size: 11.5px;
+  padding: 3px 12px;
+  border-radius: 16px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  box-shadow: 0 3px 10px rgba(255, 77, 109, 0.3);
+  margin-bottom: 8px;
 }
 
 .user-badge {
-  font-size: 13.5px;
+  font-size: 12.5px;
   color: var(--text-sub);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-weight: 500;
 }
 
@@ -193,99 +187,104 @@ button.submit-btn:active {
 }
 
 .match-target {
-  font-size: 21px;
+  font-size: 17px;
   color: var(--text-main);
   font-weight: 900;
-  line-height: 1.35;
 }
 
 .match-target-highlight {
   color: #ff4d6d;
-  font-size: 23px;
-  display: block;
-  margin-top: 6px;
+  font-size: 19px;
+  display: inline;
+  margin-left: 4px;
 }
 
 .score-badge {
   background: var(--accent-bg);
-  border: 1.5px solid #ffccd5;
-  border-radius: 14px;
-  padding: 12px;
+  border: 1.2px solid #ffccd5;
+  border-radius: 10px;
+  padding: 6px 12px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .score-num {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 900;
   color: #ff4d6d;
 }
 
 .score-sub {
-  font-size: 12.5px;
+  font-size: 11.5px;
   color: var(--text-sub);
   font-weight: 600;
-  margin-top: 2px;
 }
 
-.analysis-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* 2x2 网格布局，紧凑不占高度 */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .analysis-item {
   background: #fff8f9;
-  border-left: 3.5px solid #ff4d6d;
-  border-radius: 0 12px 12px 0;
-  padding: 14px;
+  border-top: 3px solid #ff4d6d;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .item-title {
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 800;
   color: #ff4d6d;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .item-desc {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 11.5px;
+  line-height: 1.45;
   color: #4a4e69;
   font-weight: 500;
 }
 
 .poster-footer {
-  margin-top: 22px;
-  padding-top: 16px;
-  border-top: 1.5px solid #f0f0f5;
+  padding-top: 10px;
+  border-top: 1.2px solid #f0f0f5;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .footer-brand .brand-name {
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: bold;
   color: var(--text-main);
 }
 
 .footer-brand .brand-sub {
-  font-size: 10.5px;
+  font-size: 9.5px;
   color: #aaa;
 }
 
 .contact-btn {
   background: #2b2d42;
   color: #fff;
-  font-size: 12px;
-  padding: 8px 16px;
-  border-radius: 20px;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 16px;
   font-weight: bold;
   cursor: pointer;
   border: none;
-  box-shadow: 0 4px 12px rgba(43, 45, 66, 0.2);
-  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 3px 10px rgba(43, 45, 66, 0.2);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -313,13 +312,12 @@ button.submit-btn:active {
 
 .qr-card {
   background: #fff;
-  padding: 28px 24px;
+  padding: 24px 20px;
   border-radius: 20px;
   text-align: center;
   width: 85%;
-  max-width: 310px;
+  max-width: 300px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  position: relative;
   animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -329,39 +327,37 @@ button.submit-btn:active {
 }
 
 .qr-card h3 {
-  font-size: 17px;
+  font-size: 16px;
   color: #2b2d42;
   margin-bottom: 6px;
 }
 
 .qr-card p {
-  font-size: 12.5px;
+  font-size: 12px;
   color: #8d99ae;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .wechat-box {
   background: #fff0f3;
   border: 1.5px dashed #ff4d6d;
   color: #ff4d6d;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 900;
-  padding: 12px;
-  border-radius: 12px;
-  letter-spacing: 0.5px;
-  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
   user-select: all;
 }
 
 .close-btn {
-  margin-top: 6px;
   background: #2b2d42;
   color: #fff;
   border: none;
-  padding: 10px 24px;
-  border-radius: 16px;
+  padding: 10px;
+  border-radius: 14px;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12.5px;
   cursor: pointer;
   width: 100%;
 }
@@ -370,14 +366,14 @@ button.submit-btn:active {
 <body>
 
 <div class="container" id="mainContainer">
-  <div id="loadingView" style="text-align: center; padding: 40px 0;">
-    <p style="color: #ff4d6d; font-size: 15px; font-weight: bold;">正在校验专属测算链接...</p>
+  <div id="loadingView" style="text-align: center; padding: 30px 0;">
+    <p style="color: #ff4d6d; font-size: 14px; font-weight: bold;">正在校验专属测算链接...</p>
   </div>
 
   <div id="contentView" style="display: none;">
     <div id="quizSection">
       <h1>💖 测测另一半会是什么星座&MBTI</h1>
-      <p class="subtitle">✨ 仅供娱乐，若引起家庭矛盾，概不负责（嘿嘿</p>
+      <p class="subtitle">✨ 仅供娱乐，若引起家庭矛盾，概不负责</p>
 
       <div class="form-group">
         <label class="question-title">你的初始 MBTI 类型：</label>
@@ -421,7 +417,7 @@ button.submit-btn:active {
         </select>
       </div>
 
-      <hr style="border: 0; border-top: 1.5px dashed var(--border-color); margin: 20px 0;">
+      <hr style="border: 0; border-top: 1.2px dashed var(--border-color); margin: 14px 0;">
 
       <!-- 15 道题目 -->
       <div class="form-group">
@@ -559,7 +555,7 @@ button.submit-btn:active {
         <div class="radio-group">
           <label class="radio-label"><input type="radio" name="q14" value="A"> 互相大方付出，不计较小钱，重大支出共同商议</label>
           <label class="radio-label"><input type="radio" name="q14" value="B"> 保持清晰的账目或AA制，避免经济上的牵扯</label>
-          <label class="radio-label"><input type="radio" name="q14" value="C"> 建立共同基金，为未来的生活与旅行做计划</label>
+          <label class="radio-label"><input type="radio" name="q14" value="C"> 共同储蓄，为未来的生活与旅行做计划</label>
           <label class="radio-label"><input type="radio" name="q14" value="D"> 谁赚钱多谁多承担一点，随性自然</label>
         </div>
       </div>
@@ -569,22 +565,22 @@ button.submit-btn:active {
         <div class="radio-group">
           <label class="radio-label"><input type="radio" name="q15" value="A"> 能看穿你的坚强，懂你所有的欲言又止</label>
           <label class="radio-label"><input type="radio" name="q15" value="B"> 能陪你体验生活中的酸甜苦辣，脚踏实地</label>
-          <label class="radio-label"><input type="radio" name="q15" value="C"> 在思想和价值观上能与你产生深刻的碰撞与共鸣</label>
-          <label class="radio-label"><input type="radio" name="q15" value="D"> 有独立的精神世界，能带你看到更大更棒的世界</label>
+          <label class="radio-label"><input type="radio" name="q15" value="C"> 在思想和价值观上能与你产生深刻的共鸣</label>
+          <label class="radio-label"><input type="radio" name="q15" value="D"> 有独立的精神世界，能带你看到更大世界</label>
         </div>
       </div>
 
       <button class="submit-btn" onclick="calculateMatch()">生成命定正缘分享海报 📑</button>
     </div>
 
-    <!-- 结果展示区 -->
+    <!-- 结果展示区：精简排版，确保单屏一页无需滚动 -->
     <div id="result">
       <div class="share-card">
         <div class="poster-header">
           <span class="poster-tag">🔮 星座与MBTI · 双重恋爱基因测算</span>
           <div class="user-badge">我的性格：<span id="userAttr">ESTP × 白羊座</span></div>
           <div class="match-target">
-            命中注定另一半
+            命中注定另一半：
             <span class="match-target-highlight" id="targetType">ISFJ 守卫者 × 双鱼座</span>
           </div>
         </div>
@@ -594,32 +590,33 @@ button.submit-btn:active {
           <div class="score-sub">💞 灵魂契合指数 · 命中注定的双向奔赴</div>
         </div>
 
-        <div class="analysis-list">
+        <!-- 2x2 紧凑网格分析 -->
+        <div class="analysis-grid">
           <div class="analysis-item">
-            <div class="item-title">✨ 深度另一半画像</div>
-            <div class="item-desc" id="desc0">解析加载中...</div>
+            <div class="item-title">✨ 另一半画像</div>
+            <div class="item-desc" id="desc0">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">👩‍❤️‍👨 灵魂默契度</div>
-            <div class="item-desc" id="desc1">解析加载中...</div>
+            <div class="item-title">👩‍❤️‍👨 灵魂默契</div>
+            <div class="item-desc" id="desc1">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">⚠️ 潜在避坑指南</div>
-            <div class="item-desc" id="desc2">解析加载中...</div>
+            <div class="item-title">⚠️ 避坑指南</div>
+            <div class="item-desc" id="desc2">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">💡 专属升温建议</div>
-            <div class="item-desc" id="desc3">解析加载中...</div>
+            <div class="item-title">💡 升温建议</div>
+            <div class="item-desc" id="desc3">加载中...</div>
           </div>
         </div>
 
         <div class="poster-footer">
           <div class="footer-brand">
             <div class="brand-name">测测另一半会是什么星座&MBTI</div>
-            <div class="brand-sub">仅供娱乐，若引起家庭矛盾，概不负责（嘿嘿</div>
+            <div class="brand-sub">仅供娱乐，若引起家庭矛盾概不负责</div>
           </div>
           <button class="contact-btn" onclick="showQRCode()">💬 此处有惊喜</button>
         </div>
@@ -639,7 +636,6 @@ button.submit-btn:active {
 </div>
 
 <script>
-  // Supabase 配置
   const SUPABASE_URL = 'https://hrgzmwtgpacdxifcevwy.supabase.co'; 
   const SUPABASE_ANON_KEY = 'sb_publishable_4XcXlLh77BtvmIajOGbpPA_T7d6b9fu';
 
@@ -683,8 +679,8 @@ button.submit-btn:active {
 
     if (!currentCode) {
       loadingView.innerHTML = `
-        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 链接缺少专属凭证</h2>
-        <p style="color: #666; font-size: 13.5px; line-height: 1.6;">请通过正确的带后缀专属链接访问测算页面哦~</p>
+        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 18px;">⚠️ 链接缺少专属凭证</h2>
+        <p style="color: #666; font-size: 13px;">请通过正确的带后缀专属链接访问测算页面哦~</p>
       `;
       return;
     }
@@ -714,8 +710,8 @@ button.submit-btn:active {
 
       if (fetchError || !codeRecords || codeRecords.length === 0) {
         loadingView.innerHTML = `
-          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 无效的测算链接</h2>
-          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">该专属后缀在数据库中不存在。</p>
+          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 18px;">⚠️ 无效的测算链接</h2>
+          <p style="color: #666; font-size: 13px;">该专属后缀在数据库中不存在。</p>
         `;
         return;
       }
@@ -724,8 +720,8 @@ button.submit-btn:active {
 
       if (targetCodeObj.status === 'used') {
         loadingView.innerHTML = `
-          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 该链接已被使用</h2>
-          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">此专属链接已经完成过一次测算，每个链接仅限使用一次哦~</p>
+          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 18px;">⚠️ 该链接已被使用</h2>
+          <p style="color: #666; font-size: 13px;">此专属链接已经完成过一次测算，每个链接仅限使用一次哦~</p>
         `;
         return;
       }
@@ -736,8 +732,8 @@ button.submit-btn:active {
     } catch (err) {
       console.error(err);
       loadingView.innerHTML = `
-        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 网络连接异常</h2>
-        <p style="color: #666; font-size: 13.5px;">无法连接至服务器，请稍后刷新重试。</p>
+        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 18px;">⚠️ 网络连接异常</h2>
+        <p style="color: #666; font-size: 13px;">无法连接至服务器，请稍后刷新重试。</p>
       `;
     }
   });
@@ -785,10 +781,10 @@ button.submit-btn:active {
     const userAttr = `${userRealMBTI} × ${zodiacSelect}`;
     const targetType = `${matchResult.type} × ${matchResult.zodiac}`;
     
-    const desc0 = `✨ 你的本命人格是【${userRealMBTI}】~ 另一半往往自带【${matchResult.trait}】的特质！在他面前你可以放心地展现真实自我。`;
-    const desc1 = `💘 你们的磁场非常契合！你在恋爱中非常看重深度共鸣与长久陪伴。在【${matchResult.zodiac}】的体贴关怀下，能为你带来极高的安全感与幸福感。`;
-    const desc2 = `⚠️ 避坑小提醒：因为你骨子里有着独特的思维节奏，上头时偶尔会有小摩擦。学会多沟通、多把包容给对方，感情会更加固若金汤哦~`;
-    const desc3 = `💡 互动升温秘诀：多与对方分享那些温馨治愈的日常片段！充分发挥你的真诚与温柔，能让彼此的爱意迅速升温！`;
+    const desc0 = `本命人格【${userRealMBTI}】~ 另一方自带【${matchResult.trait}】特质，让你能安心展现真实自我。`;
+    const desc1 = `磁场高度契合！在【${matchResult.zodiac}】的体贴关怀下，能为你带来极高的安全感与幸福感。`;
+    const desc2 = `思维节奏不同上头时偶尔有小摩擦。学会多沟通、多包容对方，感情会更加固若金汤哦。`;
+    const desc3 = `多与对方分享温馨治愈的日常片段，充分发挥你的真诚与温柔，让爱意迅速升温！`;
 
     const resultData = {
       userAttr,
