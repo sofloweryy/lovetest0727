@@ -29,7 +29,7 @@ body {
   background: var(--bg-gradient);
   color: var(--text-main);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding: 16px;
@@ -44,6 +44,7 @@ body {
   max-width: 500px;
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.8);
+  margin-top: 20px;
 }
 
 h1 {
@@ -287,208 +288,213 @@ button.submit-btn:active {
 
 <div class="container" id="mainContainer">
   <div id="loadingView" style="text-align: center; padding: 40px 0;">
-    <p style="color: #ff4d6d; font-size: 15px; font-weight: bold;">正在连接专属测算通道...</p>
+    <p style="color: #ff4d6d; font-size: 15px; font-weight: bold;">正在校验专属测算链接...</p>
   </div>
 
   <div id="contentView" style="display: none;">
-    <h1>💖 测测！你正缘的星座 + MBTI</h1>
-    <p class="subtitle">✨ 命中注定的灵魂伴侣 · 精准匹配你的理想恋人</p>
+    <div id="quizSection">
+      <h1>💖 测测！你正缘的星座 + MBTI</h1>
+      <p class="subtitle">✨ 命中注定的灵魂伴侣 · 精准匹配你的理想恋人</p>
 
-    <div class="form-group">
-      <label class="question-title">你的初始 MBTI 类型：</label>
-      <select id="mbti">
-        <option value="INTJ">INTJ 建筑师</option>
-        <option value="INTP">INTP 逻辑学家</option>
-        <option value="ENTJ">ENTJ 指挥官</option>
-        <option value="ENTP">ENTP 辩论家</option>
-        <option value="INFJ">INFJ 提倡者</option>
-        <option value="INFP">INFP 调停者</option>
-        <option value="ENFJ">ENFJ 主人公</option>
-        <option value="ENFP">ENFP 竞选者</option>
-        <option value="ISTJ">ISTJ 物流师</option>
-        <option value="ISFJ">ISFJ 守卫者</option>
-        <option value="ESTJ">ESTJ 总经理</option>
-        <option value="ESFJ">ESFJ 执政官</option>
-        <option value="ISTP">ISTP 鉴赏家</option>
-        <option value="ISFP">ISFP 探险家</option>
-        <option value="ESTP" selected>ESTP 企业家</option>
-        <option value="ESFP">ESFP 表演者</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label class="question-title">你的太阳星座：</label>
-      <select id="zodiac">
-        <option value="白羊座" selected>白羊座 (03.21 - 04.19)</option>
-        <option value="金牛座">金牛座 (04.20 - 05.20)</option>
-        <option value="双子座">双子座 (05.21 - 06.21)</option>
-        <option value="巨蟹座">巨蟹座 (06.22 - 07.22)</option>
-        <option value="狮子座">狮子座 (07.23 - 08.22)</option>
-        <option value="处女座">处女座 (08.23 - 09.22)</option>
-        <option value="天秤座">天秤座 (09.23 - 10.23)</option>
-        <option value="天蝎座">天蝎座 (10.24 - 11.22)</option>
-        <option value="射手座">射手座 (11.23 - 12.21)</option>
-        <option value="摩羯座">摩羯座 (12.22 - 01.19)</option>
-        <option value="水瓶座">水瓶座 (01.20 - 02.18)</option>
-        <option value="双鱼座">双鱼座 (02.19 - 03.20)</option>
-      </select>
-    </div>
-
-    <hr style="border: 0; border-top: 1.5px dashed var(--border-color); margin: 20px 0;">
-
-    <!-- 15 道题目 -->
-    <div class="form-group">
-      <label class="question-title">1. 周末约会时，你更倾向于哪种行程安排？</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q1" value="A" checked> 提前做足攻略，时间与路线安排得井井有条</label>
-        <label class="radio-label"><input type="radio" name="q1" value="B"> 确定一个目的地，到了之后随性走走逛逛</label>
-        <label class="radio-label"><input type="radio" name="q1" value="C"> 无所谓行程，只要能和对方粘在一起就好</label>
-        <label class="radio-label"><input type="radio" name="q1" value="D"> 各自在家看看书/玩游戏，晚一点再聚餐</label>
+      <div class="form-group">
+        <label class="question-title">你的初始 MBTI 类型：</label>
+        <select id="mbti">
+          <option value="" disabled selected style="color: #999;">请选择你的 MBTI 类型</option>
+          <option value="INTJ">INTJ 建筑师</option>
+          <option value="INTP">INTP 逻辑学家</option>
+          <option value="ENTJ">ENTJ 指挥官</option>
+          <option value="ENTP">ENTP 辩论家</option>
+          <option value="INFJ">INFJ 提倡者</option>
+          <option value="INFP">INFP 调停者</option>
+          <option value="ENFJ">ENFJ 主人公</option>
+          <option value="ENFP">ENFP 竞选者</option>
+          <option value="ISTJ">ISTJ 物流师</option>
+          <option value="ISFJ">ISFJ 守卫者</option>
+          <option value="ESTJ">ESTJ 总经理</option>
+          <option value="ESFJ">ESFJ 执政官</option>
+          <option value="ISTP">ISTP 鉴赏家</option>
+          <option value="ISFP">ISFP 探险家</option>
+          <option value="ESTP">ESTP 企业家</option>
+          <option value="ESFP">ESFP 表演者</option>
+        </select>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">2. 当你工作或学习遇到不顺心向对方倾诉时，你最希望：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q2" value="A" checked> 坚定地站在我这边，帮我吐槽排解情绪</label>
-        <label class="radio-label"><input type="radio" name="q2" value="B"> 冷静帮我分析原因，并给出具体的解决方案</label>
-        <label class="radio-label"><input type="radio" name="q2" value="C"> 带我去吃好吃的或散心，用行动转移注意力</label>
-        <label class="radio-label"><input type="radio" name="q2" value="D"> 静静倾听并拥抱我，给我充分的温柔共鸣</label>
+      <div class="form-group">
+        <label class="question-title">你的太阳星座：</label>
+        <select id="zodiac">
+          <option value="" disabled selected style="color: #999;">请选择你的太阳星座</option>
+          <option value="白羊座">白羊座 (03.21 - 04.19)</option>
+          <option value="金牛座">金牛座 (04.20 - 05.20)</option>
+          <option value="双子座">双子座 (05.21 - 06.21)</option>
+          <option value="巨蟹座">巨蟹座 (06.22 - 07.22)</option>
+          <option value="狮子座">狮子座 (07.23 - 08.22)</option>
+          <option value="处女座">处女座 (08.23 - 09.22)</option>
+          <option value="天秤座">天秤座 (09.23 - 10.23)</option>
+          <option value="天蝎座">天蝎座 (10.24 - 11.22)</option>
+          <option value="射手座">射手座 (11.23 - 12.21)</option>
+          <option value="摩羯座">摩羯座 (12.22 - 01.19)</option>
+          <option value="水瓶座">水瓶座 (01.20 - 02.18)</option>
+          <option value="双鱼座">双鱼座 (02.19 - 03.20)</option>
+        </select>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">3. 两个人产生分歧或小争执时，你通常会：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q3" value="A" checked> 希望当场直截了当说清楚，不把情绪留到明天</label>
-        <label class="radio-label"><input type="radio" name="q3" value="B"> 先各自冷静一会儿，找时间列出事实理性讨论</label>
-        <label class="radio-label"><input type="radio" name="q3" value="C"> 顺应对方的态度，主动给个软话避免冲突</label>
-        <label class="radio-label"><input type="radio" name="q3" value="D"> 戴上耳机做自己的事，等双方都恢复理智再聊</label>
+      <hr style="border: 0; border-top: 1.5px dashed var(--border-color); margin: 20px 0;">
+
+      <!-- 15 道题目 -->
+      <div class="form-group">
+        <label class="question-title">1. 周末约会时，你更倾向于哪种行程安排？</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q1" value="A"> 提前做足攻略，时间与路线安排得井井有条</label>
+          <label class="radio-label"><input type="radio" name="q1" value="B"> 确定一个目的地，到了之后随性走走逛逛</label>
+          <label class="radio-label"><input type="radio" name="q1" value="C"> 无所谓行程，只要能和对方粘在一起就好</label>
+          <label class="radio-label"><input type="radio" name="q1" value="D"> 各自在家看看书/玩游戏，晚一点再聚餐</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">4. 约会去网红餐厅排队需要等很长时间，你会：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q4" value="A" checked> 边排队边愉快聊天，把等待当成甜蜜的相处</label>
-        <label class="radio-label"><input type="radio" name="q4" value="B"> 果断换一家不需要等位的高品质餐厅，不浪费时间</label>
-        <label class="radio-label"><input type="radio" name="q4" value="C"> 取号后去附近买杯奶茶或逛街，时间到了再回来</label>
-        <label class="radio-label"><input type="radio" name="q4" value="D"> 听从对方的决定，对方想等就等、想换就换</label>
+      <div class="form-group">
+        <label class="question-title">2. 当你工作或学习遇到不顺心向对方倾诉时，你最希望：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q2" value="A"> 坚定地站在我这边，帮我吐槽排解情绪</label>
+          <label class="radio-label"><input type="radio" name="q2" value="B"> 冷静帮我分析原因，并给出具体的解决方案</label>
+          <label class="radio-label"><input type="radio" name="q2" value="C"> 带我去吃好吃的或散心，用行动转移注意力</label>
+          <label class="radio-label"><input type="radio" name="q2" value="D"> 静静倾听并拥抱我，给我充分的温柔共鸣</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">5. 在日常陪伴中，你更看重哪种相处状态？</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q5" value="A" checked> 两个人共享喜好，有聊不完的共同话题和理想</label>
-        <label class="radio-label"><input type="radio" name="q5" value="B"> 即使各自做不同的事情，呆在同个空间也感到舒服</label>
-        <label class="radio-label"><input type="radio" name="q5" value="C"> 定期有浪漫的仪式感和惊喜，保持感情热情</label>
-        <label class="radio-label"><input type="radio" name="q5" value="D"> 能互相帮助、在事业或生活上成为强有力的后盾</label>
+      <div class="form-group">
+        <label class="question-title">3. 两个人产生分歧或小争执时，你通常会：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q3" value="A"> 希望当场直截了当说清楚，不把情绪留到明天</label>
+          <label class="radio-label"><input type="radio" name="q3" value="B"> 先各自冷静一会儿，找时间列出事实理性讨论</label>
+          <label class="radio-label"><input type="radio" name="q3" value="C"> 顺应对方的态度，主动给个软话避免冲突</label>
+          <label class="radio-label"><input type="radio" name="q3" value="D"> 戴上耳机做自己的事，等双方都恢复理智再聊</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">6. 对于恋爱中的“报备”与社交边界，你觉得：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q6" value="A" checked> 主动告知行程是给彼此安全感的基本方式</label>
-        <label class="radio-label"><input type="radio" name="q6" value="B"> 保持信任即可，不需要事无巨细地汇报个人空间</label>
-        <label class="radio-label"><input type="radio" name="q6" value="C"> 只要不和异性有过于亲密的单独互动，其他都自由</label>
-        <label class="radio-label"><input type="radio" name="q6" value="D"> 最好共享彼此的日程卡，这样方便安排重合的空闲时间</label>
+      <div class="form-group">
+        <label class="question-title">4. 约会去网红餐厅排队需要等很长时间，你会：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q4" value="A"> 边排队边愉快聊天，把等待当成甜蜜的相处</label>
+          <label class="radio-label"><input type="radio" name="q4" value="B"> 果断换一家不需要等位的高品质餐厅，不浪费时间</label>
+          <label class="radio-label"><input type="radio" name="q4" value="C"> 取号后去附近买杯奶茶或逛街，时间到了再回来</label>
+          <label class="radio-label"><input type="radio" name="q4" value="D"> 听从对方的决定，对方想等就等、想换就换</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">7. 挑选送给对方的生日礼物时，你更倾向于：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q7" value="A" checked> 实用性强、对方日常生活正需要的硬核物品</label>
-        <label class="radio-label"><input type="radio" name="q7" value="B"> 充满心意、有独特纪念意义或手工制作的礼物</label>
-        <label class="radio-label"><input type="radio" name="q7" value="C"> 带对方去体验一次高端SPA或旅行等浪漫记忆</label>
-        <label class="radio-label"><input type="radio" name="q7" value="D"> 直接询问对方想要什么，精准清空对方的购物车</label>
+      <div class="form-group">
+        <label class="question-title">5. 在日常陪伴中，你更看重哪种相处状态？</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q5" value="A"> 两个人共享喜好，有聊不完的共同话题和理想</label>
+          <label class="radio-label"><input type="radio" name="q5" value="B"> 即使各自做不同的事情，呆在同个空间也感到舒服</label>
+          <label class="radio-label"><input type="radio" name="q5" value="C"> 定期有浪漫的仪式感和惊喜，保持感情热情</label>
+          <label class="radio-label"><input type="radio" name="q5" value="D"> 能互相帮助、在事业或生活上成为强有力的后盾</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">8. 如果原定的出行计划因为天气或突发状况取消，你的反应是：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q8" value="A" checked> 快速调整，迅速找寻室内或备选的替代方案</label>
-        <label class="radio-label"><input type="radio" name="q8" value="B"> 顺其自然，干脆改在家里休息、看电影点外卖</label>
-        <label class="radio-label"><input type="radio" name="q8" value="C"> 会感到些许沮丧，需要对方及时安抚情绪</label>
-        <label class="radio-label"><input type="radio" name="q8" value="D"> 觉得没关系，正好利用空出来的这段时间处理个人琐事</label>
+      <div class="form-group">
+        <label class="question-title">6. 对于恋爱中的“报备”与社交边界，你觉得：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q6" value="A"> 主动告知行程是给彼此安全感的基本方式</label>
+          <label class="radio-label"><input type="radio" name="q6" value="B"> 保持信任即可，不需要事无巨细地汇报个人空间</label>
+          <label class="radio-label"><input type="radio" name="q6" value="C"> 只要不和异性有过于亲密的单独互动，其他都自由</label>
+          <label class="radio-label"><input type="radio" name="q6" value="D"> 最好共享彼此的日程卡，这样方便安排重合的空闲时间</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">9. 哪种类型的性格特征最容易吸引你？</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q9" value="A" checked> 沉稳靠谱、做事有条理、有担当的类型</label>
-        <label class="radio-label"><input type="radio" name="q9" value="B"> 幽默风趣、富有创造力、脑洞大开的类型</label>
-        <label class="radio-label"><input type="radio" name="q9" value="C"> 温柔细腻、懂得倾听、情绪价值拉满的体贴类型</label>
-        <label class="radio-label"><input type="radio" name="q9" value="D"> 清冷独立、智商超高、理性深沉的学霸类型</label>
+      <div class="form-group">
+        <label class="question-title">7. 挑选送给对方的生日礼物时，你更倾向于：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q7" value="A"> 实用性强、对方日常生活正需要的硬核物品</label>
+          <label class="radio-label"><input type="radio" name="q7" value="B"> 充满心意、有独特纪念意义或手工制作的礼物</label>
+          <label class="radio-label"><input type="radio" name="q7" value="C"> 带对方去体验一次高端SPA或旅行等浪漫记忆</label>
+          <label class="radio-label"><input type="radio" name="q7" value="D"> 直接询问对方想要什么，精准清空对方的购物车</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">10. 当你处于情绪低谷期不想说话时，希望对方：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q10" value="A" checked> 默默陪在旁边，不用说太多，给足安全感</label>
-        <label class="radio-label"><input type="radio" name="q10" value="B"> 给我独立的个人空间，等我想说的时候再开口</label>
-        <label class="radio-label"><input type="radio" name="q10" value="C"> 耐心引导我表达出来，帮我排解心中的不快</label>
-        <label class="radio-label"><input type="radio" name="q10" value="D"> 用逻辑帮我厘清问题根源，一步步拆解烦恼</label>
+      <div class="form-group">
+        <label class="question-title">8. 如果原定的出行计划因为天气或突发状况取消，你的反应是：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q8" value="A"> 快速调整，迅速找寻室内或备选的替代方案</label>
+          <label class="radio-label"><input type="radio" name="q8" value="B"> 顺其自然，干脆改在家里休息、看电影点外卖</label>
+          <label class="radio-label"><input type="radio" name="q8" value="C"> 会感到些许沮丧，需要对方及时安抚情绪</label>
+          <label class="radio-label"><input type="radio" name="q8" value="D"> 觉得没关系，正好利用空出来的这段时间处理个人琐事</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">11. 你如何看待在朋友圈或社交平台公开恋情？</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q11" value="A" checked> 这是对感情负责的态度，应该大方分享给亲友</label>
-        <label class="radio-label"><input type="radio" name="q11" value="B"> 个人生活没必要向外界展示，低调幸福就好</label>
-        <label class="radio-label"><input type="radio" name="q11" value="C"> 顺其自然，有合适契机或纪念日就发，不强求</label>
-        <label class="radio-label"><input type="radio" name="q11" value="D"> 仅设置好友可见或只发背景图，留一点私密感</label>
+      <div class="form-group">
+        <label class="question-title">9. 哪种类型的性格特征最容易吸引你？</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q9" value="A"> 沉稳靠谱、做事有条理、有担当的类型</label>
+          <label class="radio-label"><input type="radio" name="q9" value="B"> 幽默风趣、富有创造力、脑洞大开的类型</label>
+          <label class="radio-label"><input type="radio" name="q9" value="C"> 温柔细腻、懂得倾听、情绪价值拉满的体贴类型</label>
+          <label class="radio-label"><input type="radio" name="q9" value="D"> 清冷独立、智商超高、理性深沉的学霸类型</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">12. 忙碌状态下对方未能及时回复微信，你的想法是：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q12" value="A" checked> 理解对方在忙，自己也专注做手头的事</label>
-        <label class="radio-label"><input type="radio" name="q12" value="B"> 会有些许焦虑，但等对方空闲后说明原因即可</label>
-        <label class="radio-label"><input type="radio" name="q12" value="C"> 习惯对方提前交代一声，避免不必要的猜测与担心</label>
-        <label class="radio-label"><input type="radio" name="q12" value="D"> 完全不care，反正大家都是成熟的成年人了</label>
+      <div class="form-group">
+        <label class="question-title">10. 当你处于情绪低谷期不想说话时，希望对方：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q10" value="A"> 默默陪在旁边，不用说太多，给足安全感</label>
+          <label class="radio-label"><input type="radio" name="q10" value="B"> 给我独立的个人空间，等我想说的时候再开口</label>
+          <label class="radio-label"><input type="radio" name="q10" value="C"> 耐心引导我表达出来，帮我排解心中的不快</label>
+          <label class="radio-label"><input type="radio" name="q10" value="D"> 用逻辑帮我厘清问题根源，一步步拆解烦恼</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">13. 你认为一段长久健康的恋爱关系，核心在于：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q13" value="A" checked> 相互理解与包容，能够彼此陪伴成长</label>
-        <label class="radio-label"><input type="radio" name="q13" value="B"> 相同的价值观与生活步调</label>
-        <label class="radio-label"><input type="radio" name="q13" value="C"> 保持各自的独立性，同时又紧密依恋</label>
-        <label class="radio-label"><input type="radio" name="q13" value="D"> 彼此高度信任，坦诚相对不隐瞒</label>
+      <div class="form-group">
+        <label class="question-title">11. 你如何看待在朋友圈或社交平台公开恋情？</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q11" value="A"> 这是对感情负责的态度，应该大方分享给亲友</label>
+          <label class="radio-label"><input type="radio" name="q11" value="B"> 个人生活没必要向外界展示，低调幸福就好</label>
+          <label class="radio-label"><input type="radio" name="q11" value="C"> 顺其自然，有合适契机或纪念日就发，不强求</label>
+          <label class="radio-label"><input type="radio" name="q11" value="D"> 仅设置好友可见或只发背景图，留一点私密感</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">14. 对于日常生活中的消费与财务规划，你倾向于：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q14" value="A" checked> 互相大方付出，不计较小钱，重大支出共同商议</label>
-        <label class="radio-label"><input type="radio" name="q14" value="B"> 保持清晰的账目或AA制，避免经济上的牵扯</label>
-        <label class="radio-label"><input type="radio" name="q14" value="C"> 建立共同基金，为未来的生活与旅行做计划</label>
-        <label class="radio-label"><input type="radio" name="q14" value="D"> 谁赚钱多谁多承担一点，随性自然</label>
+      <div class="form-group">
+        <label class="question-title">12. 忙碌状态下对方未能及时回复微信，你的想法是：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q12" value="A"> 理解对方在忙，自己也专注做手头的事</label>
+          <label class="radio-label"><input type="radio" name="q12" value="B"> 会有些许焦虑，但等对方空闲后说明原因即可</label>
+          <label class="radio-label"><input type="radio" name="q12" value="C"> 习惯对方提前交代一声，避免不必要的猜测与担心</label>
+          <label class="radio-label"><input type="radio" name="q12" value="D"> 完全不care，反正大家都是成熟的成年人了</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="question-title">15. 你心目中理想的“灵魂伴侣”最突出的品质是：</label>
-      <div class="radio-group">
-        <label class="radio-label"><input type="radio" name="q15" value="A" checked> 能看穿你的坚强，懂你所有的欲言又止</label>
-        <label class="radio-label"><input type="radio" name="q15" value="B"> 能陪你体验生活中的酸甜苦辣，脚踏实地</label>
-        <label class="radio-label"><input type="radio" name="q15" value="C"> 在思想和价值观上能与你产生深刻的碰撞与共鸣</label>
-        <label class="radio-label"><input type="radio" name="q15" value="D"> 有独立的精神世界，能带你看到更大更棒的世界</label>
+      <div class="form-group">
+        <label class="question-title">13. 你认为一段长久健康的恋爱关系，核心在于：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q13" value="A"> 相互理解与包容，能够彼此陪伴成长</label>
+          <label class="radio-label"><input type="radio" name="q13" value="B"> 相同的价值观与生活步调</label>
+          <label class="radio-label"><input type="radio" name="q13" value="C"> 保持各自的独立性，同时又紧密依恋</label>
+          <label class="radio-label"><input type="radio" name="q13" value="D"> 彼此高度信任，坦诚相对不隐瞒</label>
+        </div>
       </div>
+
+      <div class="form-group">
+        <label class="question-title">14. 对于日常生活中的消费与财务规划，你倾向于：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q14" value="A"> 互相大方付出，不计较小钱，重大支出共同商议</label>
+          <label class="radio-label"><input type="radio" name="q14" value="B"> 保持清晰的账目或AA制，避免经济上的牵扯</label>
+          <label class="radio-label"><input type="radio" name="q14" value="C"> 建立共同基金，为未来的生活与旅行做计划</label>
+          <label class="radio-label"><input type="radio" name="q14" value="D"> 谁赚钱多谁多承担一点，随性自然</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="question-title">15. 你心目中理想的“灵魂伴侣”最突出的品质是：</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="q15" value="A"> 能看穿你的坚强，懂你所有的欲言又止</label>
+          <label class="radio-label"><input type="radio" name="q15" value="B"> 能陪你体验生活中的酸甜苦辣，脚踏实地</label>
+          <label class="radio-label"><input type="radio" name="q15" value="C"> 在思想和价值观上能与你产生深刻的碰撞与共鸣</label>
+          <label class="radio-label"><input type="radio" name="q15" value="D"> 有独立的精神世界，能带你看到更大更棒的世界</label>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="calculateMatch()">生成命定正缘分享海报 📑</button>
     </div>
 
-    <button class="submit-btn" onclick="calculateMatch()">生成命定正缘分享海报 📑</button>
-
+    <!-- 结果展示区 -->
     <div id="result">
       <div class="share-card">
         <div class="poster-header">
@@ -508,22 +514,22 @@ button.submit-btn:active {
         <div class="analysis-list">
           <div class="analysis-item">
             <div class="item-title">✨ 深度正缘画像</div>
-            <div class="item-desc">解析加载中...</div>
+            <div class="item-desc" id="desc0">解析加载中...</div>
           </div>
 
           <div class="analysis-item">
             <div class="item-title">👩‍❤️‍👨 灵魂默契度</div>
-            <div class="item-desc">解析加载中...</div>
+            <div class="item-desc" id="desc1">解析加载中...</div>
           </div>
 
           <div class="analysis-item">
             <div class="item-title">⚠️ 潜在避坑指南</div>
-            <div class="item-desc">解析加载中...</div>
+            <div class="item-desc" id="desc2">解析加载中...</div>
           </div>
 
           <div class="analysis-item">
             <div class="item-title">💡 专属升温建议</div>
-            <div class="item-desc">解析加载中...</div>
+            <div class="item-desc" id="desc3">解析加载中...</div>
           </div>
         </div>
 
@@ -549,65 +555,9 @@ button.submit-btn:active {
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 页面加载时：自动完成权限校验与名额核销
-  window.addEventListener('DOMContentLoaded', async () => {
-    const loadingView = document.getElementById('loadingView');
-    const contentView = document.getElementById('contentView');
-
-    // 1. 检查当前浏览器本地是否已经有“通行证”
-    const localPassed = localStorage.getItem('my_crush_passed');
-    if (localPassed === 'true') {
-      loadingView.style.display = 'none';
-      contentView.style.display = 'block';
-      return;
-    }
-
-    try {
-      // 2. 查询 status 为 'unused' 的名额
-      const { data: unusedCodes, error: fetchError } = await supabaseClient
-        .from('codes')
-        .select('*')
-        .eq('status', 'unused')
-        .limit(1);
-
-      if (fetchError || !unusedCodes || unusedCodes.length === 0) {
-        loadingView.innerHTML = `
-          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 访问名额已满</h2>
-          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">当前测试链接名额已被全部领取完毕，请联系管理员获取新链接哦~</p>
-        `;
-        return;
-      }
-
-      const targetCodeObj = unusedCodes[0];
-
-      // 3. 将名额状态更新为 'used'，并记录精确的核销时间 (used_at)
-      const { error: updateError } = await supabaseClient
-        .from('codes')
-        .update({ 
-          status: 'used',
-          used_at: new Date().toISOString() 
-        })
-        .eq('code', targetCodeObj.code);
-
-      if (updateError) {
-        console.error('状态与时间更新失败', updateError);
-      }
-
-      // 4. 抢名额成功！在当前用户的浏览器里种下永久通行证
-      localStorage.setItem('my_crush_passed', 'true');
-
-      // 5. 展示问卷内容
-      loadingView.style.display = 'none';
-      contentView.style.display = 'block';
-
-    } catch (err) {
-      console.error(err);
-      loadingView.innerHTML = `
-        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 网络连接异常</h2>
-        <p style="color: #666; font-size: 13.5px;">无法连接至服务器，请稍后刷新重试。</p>
-      `;
-    }
-  });
+  // 获取当前 URL 里的后缀参数，例如：index.html?code=abc123
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentCode = urlParams.get('code');
 
   // 正缘对应表
   const targetMap = {
@@ -647,15 +597,129 @@ button.submit-btn:active {
     q15: { A: [-2, 3, -3, -1], B: [0, -3, 2, 2], C: [1, 3, 2, 0], D: [2, 2, 0, -2] }
   };
 
+  // 页面加载时校验链接与核销状态
+  window.addEventListener('DOMContentLoaded', async () => {
+    const loadingView = document.getElementById('loadingView');
+    const contentView = document.getElementById('contentView');
+    const quizSection = document.getElementById('quizSection');
+    const resultDiv = document.getElementById('result');
+
+    // 1. 校验是否携带了 code 后缀
+    if (!currentCode) {
+      loadingView.innerHTML = `
+        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 链接缺少专属凭证</h2>
+        <p style="color: #666; font-size: 13.5px; line-height: 1.6;">请通过正确的带后缀专属链接访问测算页面哦~</p>
+      `;
+      return;
+    }
+
+    // 2. 检查本地是否已经有“针对当前 code”保存过的测试结果
+    const storageKey = `my_crush_result_${currentCode}`;
+    const savedResultStr = localStorage.getItem(storageKey);
+    if (savedResultStr) {
+      try {
+        const savedData = JSON.parse(savedResultStr);
+        renderResult(savedData);
+        quizSection.style.display = 'none';
+        resultDiv.style.display = 'block';
+        loadingView.style.display = 'none';
+        contentView.style.display = 'block';
+        return;
+      } catch (e) {
+        console.error('解析本地结果出错', e);
+      }
+    }
+
+    // 3. 如果本地没有该 code 的测试记录，去数据库精确查询这个 code
+    try {
+      const { data: codeRecords, error: fetchError } = await supabaseClient
+        .from('codes')
+        .select('*')
+        .eq('code', currentCode)
+        .limit(1);
+
+      if (fetchError || !codeRecords || codeRecords.length === 0) {
+        loadingView.innerHTML = `
+          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 无效的测算链接</h2>
+          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">该专属后缀（${currentCode}）在数据库中不存在。</p>
+        `;
+        return;
+      }
+
+      const targetCodeObj = codeRecords[0];
+
+      // 如果这个 code 已经被用过了，但在该设备又没有本地缓存
+      if (targetCodeObj.status === 'used') {
+        loadingView.innerHTML = `
+          <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 该链接已被使用</h2>
+          <p style="color: #666; font-size: 13.5px; line-height: 1.6;">此专属链接已经完成过一次测算，每个链接仅限使用一次哦~</p>
+        `;
+        return;
+      }
+
+      // 4. 如果状态是 unused，立即核销并将状态更新为 used
+      const { error: updateError } = await supabaseClient
+        .from('codes')
+        .update({ 
+          status: 'used'
+        })
+        .eq('code', currentCode);
+
+      if (updateError) {
+        console.error('状态更新失败', updateError);
+      }
+
+      // 5. 放行显示答题表单
+      loadingView.style.display = 'none';
+      contentView.style.display = 'block';
+
+    } catch (err) {
+      console.error(err);
+      loadingView.innerHTML = `
+        <h2 style="color: #ff4d6d; margin-bottom: 10px; font-size: 20px;">⚠️ 网络连接异常</h2>
+        <p style="color: #666; font-size: 13.5px;">无法连接至服务器，请稍后刷新重试。</p>
+      `;
+    }
+  });
+
+  function renderResult(data) {
+    document.getElementById('userAttr').innerText = data.userAttr;
+    document.getElementById('targetType').innerText = data.targetType;
+    document.getElementById('scoreNum').innerText = data.scoreNum + '%';
+    document.getElementById('desc0').innerText = data.desc0;
+    document.getElementById('desc1').innerText = data.desc1;
+    document.getElementById('desc2').innerText = data.desc2;
+    document.getElementById('desc3').innerText = data.desc3;
+  }
+
   function calculateMatch() {
-    const zodiac = document.getElementById('zodiac').value;
+    const mbtiSelect = document.getElementById('mbti').value;
+    const zodiacSelect = document.getElementById('zodiac').value;
+
+    if (!mbtiSelect) {
+      alert('请先选择你的 MBTI 类型哦！');
+      return;
+    }
+    if (!zodiacSelect) {
+      alert('请先选择你的太阳星座哦！');
+      return;
+    }
+
+    // 检查15道题目是否全部作答
+    for (let i = 1; i <= 15; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (!selected) {
+        alert(`请完成第 ${i} 道题目再生成海报哦！`);
+        return;
+      }
+    }
 
     let scoreE = 0, scoreN = 0, scoreT = 0, scoreJ = 0;
     let hashVal = 0; 
 
     for (let i = 1; i <= 15; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
-      const val = selected ? selected.value : 'A';
+      const val = selected.value;
       
       const w = weights[`q${i}`][val];
       scoreE += w[0];
@@ -675,18 +739,30 @@ button.submit-btn:active {
     const matchResult = targetMap[userRealMBTI];
     const scoreNum = (88.5 + (hashVal % 113) / 10).toFixed(1);
 
-    document.getElementById('userAttr').innerText = `${userRealMBTI} × ${zodiac}`;
-    document.getElementById('targetType').innerText = `${matchResult.type} × ${matchResult.zodiac}`;
-    document.getElementById('scoreNum').innerText = `${scoreNum}%`;
+    const userAttr = `${userRealMBTI} × ${zodiacSelect}`;
+    const targetType = `${matchResult.type} × ${matchResult.zodiac}`;
+    
+    const desc0 = `✨ 你的本命人格是【${userRealMBTI}】~ 最适合你的正缘对象，往往自带【${matchResult.trait}】的特质！在他面前你可以放心地展现真实自我。`;
+    const desc1 = `💘 你们的磁场非常契合！你在恋爱中非常看重${derivedT === 'T' ? '高效有力的行动力与偏爱' : '满格的情绪价值和温柔共鸣'}。在【${matchResult.zodiac}】的体贴关怀下，能给你带来极高的安全感。`;
+    const desc2 = `⚠️ 避坑小提醒：因为你骨子里带点【${derivedJ === 'J' ? '规划控/细节怪' : '随性派/自由灵魂'}】，上头时容易小纠结。偶尔放平心态、把主动权交给对方，会有意想不到的惊喜体验哦~`;
+    const desc3 = `💡 互动升温秘诀：多与对方分享那些有趣有意义的日常片段！充分发挥你 ${derivedE === 'E' ? '热情开朗的优势' : '细腻周到的小心思'}，能让感情迅速升温！`;
 
-    const descItems = document.querySelectorAll('.item-desc');
-    if (descItems.length >= 4) {
-      descItems[0].innerText = `✨ 你的本命人格是【${userRealMBTI}】~ 最适合你的正缘对象，往往自带【${matchResult.trait}】的特质！在他面前你可以放心地展现真实自我。`;
-      descItems[1].innerText = `💘 你们的磁场非常契合！你在恋爱中非常看重${derivedT === 'T' ? '高效有力的行动力与偏爱' : '满格的情绪价值和温柔共鸣'}。在【${matchResult.zodiac}】的体贴关怀下，能给你带来极高的安全感。`;
-      descItems[2].innerText = `⚠️ 避坑小提醒：因为你骨子里带点【${derivedJ === 'J' ? '规划控/细节怪' : '随性派/自由灵魂'}】，上头时容易小纠结。偶尔放平心态、把主动权交给对方，会有意想不到的惊喜体验哦~`;
-      descItems[3].innerText = `💡 互动升温秘诀：多与对方分享那些有趣有意义的日常片段！充分发挥你 ${derivedE === 'E' ? '热情开朗的优势' : '细腻周到的小心思'}，能让感情迅速升温！`;
-    }
+    const resultData = {
+      userAttr,
+      targetType,
+      scoreNum,
+      desc0,
+      desc1,
+      desc2,
+      desc3
+    };
 
+    // 绑定当前 code 后缀独立保存结果
+    const storageKey = `my_crush_result_${currentCode}`;
+    localStorage.setItem(storageKey, JSON.stringify(resultData));
+
+    renderResult(resultData);
+    document.getElementById('quizSection').style.display = 'none';
     const resultDiv = document.getElementById('result');
     resultDiv.style.display = 'block';
     resultDiv.scrollIntoView({ behavior: 'smooth' });
