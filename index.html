@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>💖 测测另一半会是什么星座&MBTI</title>
+<title>测测另一半会是什么星座&MBTI</title>
 <!-- 引入 Supabase 客户端 SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --primary-gradient: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
   --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #f3e8ff 100%);
-  --card-bg: rgba(255, 255, 255, 0.96);
+  --card-bg: #ffffff;
   --text-main: #2b2d42;
   --text-sub: #8d99ae;
   --accent-bg: #fff5f7;
@@ -32,7 +32,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 4px 16px 24px 16px;
+  padding: 8px 16px 32px 16px;
   position: relative;
   overflow-x: hidden;
 }
@@ -42,7 +42,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 500px;
-  height: 28px;
+  height: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,16 +126,10 @@ body {
   100% { transform: translateY(-3px); }
 }
 
-.container {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
+/* 直接作为主内容流，去掉外层大白底容器 */
+.main-content {
   width: 100%;
   max-width: 500px;
-  padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  margin-top: 0;
 }
 
 h1 {
@@ -459,15 +453,15 @@ button.submit-btn:active {
   <div class="art-heart"></div>
 </div>
 
-<div class="container" id="mainContainer">
+<div class="main-content" id="mainContainer">
   <div id="loadingView" style="text-align: center; padding: 40px 0;">
     <p style="color: #ff4d6d; font-size: 15px; font-weight: bold;">正在校验专属测算链接...</p>
   </div>
 
   <div id="contentView" style="display: none;">
     <div id="quizSection">
-      <h1>💖 测测另一半会是什么星座&MBTI</h1>
-      <p class="subtitle">仅供娱乐，如引起矛盾概不负责（嘿嘿😁</p>
+      <h1>测测另一半会是什么星座&MBTI</h1>
+      <p class="subtitle">仅供娱乐，如引起矛盾概不负责（嘿嘿</p>
 
       <div class="form-group">
         <label class="question-title">你的初始 MBTI 类型：</label>
@@ -671,7 +665,7 @@ button.submit-btn:active {
     <div id="result">
       <div class="share-card">
         <div class="poster-header">
-          <span class="poster-tag">🔮 星座与MBTI · 双重恋爱基因测算</span>
+          <span class="poster-tag">星座与MBTI · 双重恋爱基因测算</span>
           <div class="user-badge">我的性格：<span id="userAttr">ESTP × 白羊座</span></div>
           <div class="match-target">
             命中注定另一半
@@ -681,28 +675,28 @@ button.submit-btn:active {
 
         <div class="score-badge">
           <div class="score-num" id="scoreNum">98.6%</div>
-          <div class="score-sub">💞 灵魂契合指数 · 命中注定的双向奔赴</div>
+          <div class="score-sub">灵魂契合指数 · 命中注定的双向奔赴</div>
         </div>
 
         <!-- 上下单列分析列表 -->
         <div class="analysis-list">
           <div class="analysis-item">
-            <div class="item-title">✨ 另一半画像</div>
+            <div class="item-title">另一半画像</div>
             <div class="item-desc" id="desc0">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">👩‍❤️‍👨 灵魂默契</div>
+            <div class="item-title">灵魂默契</div>
             <div class="item-desc" id="desc1">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">⚠️ 避坑指南</div>
+            <div class="item-title">避坑指南</div>
             <div class="item-desc" id="desc2">加载中...</div>
           </div>
 
           <div class="analysis-item">
-            <div class="item-title">💡 升温建议</div>
+            <div class="item-title">升温建议</div>
             <div class="item-desc" id="desc3">加载中...</div>
           </div>
         </div>
@@ -710,9 +704,9 @@ button.submit-btn:active {
         <div class="poster-footer">
           <div class="footer-brand">
             <div class="brand-name">测测另一半会是什么星座&MBTI</div>
-            <div class="brand-sub">仅供娱乐，如引起矛盾概不负责（嘿嘿😁</div>
+            <div class="brand-sub">仅供娱乐，如引起矛盾概不负责</div>
           </div>
-          <button class="contact-btn" onclick="showQRCode()">💬 此处有惊喜</button>
+          <button class="contact-btn" onclick="showQRCode()">此处有惊喜</button>
         </div>
       </div>
     </div>
@@ -722,7 +716,7 @@ button.submit-btn:active {
 <!-- 微信号弹窗部分 -->
 <div class="qr-modal" id="qrModal">
   <div class="qr-card">
-    <h3>💬 联系美丽的开发者</h3>
+    <h3>联系美丽的开发者</h3>
     <p>长按或点击下方复制微信号</p>
     <div class="wechat-box">SleepToSleepy</div>
     <button class="close-btn" onclick="hideQRCode()">马上去，我倒是要看看</button>
