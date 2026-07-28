@@ -148,7 +148,6 @@ button.submit-btn:active {
   display: none;
 }
 
-/* 恢复上下单列排版，增加舒适间距 */
 .share-card {
   background: #ffffff;
   border-radius: 20px;
@@ -224,7 +223,6 @@ button.submit-btn:active {
   margin-top: 2px;
 }
 
-/* 上下单列分析卡片，内容精简清爽 */
 .analysis-list {
   display: flex;
   flex-direction: column;
@@ -272,25 +270,26 @@ button.submit-btn:active {
   color: #aaa;
 }
 
+/* 调整后的按钮：体积更小、更有活力的粉红渐变配色 */
 .contact-btn {
-  background: #2b2d42;
+  background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
   color: #fff;
-  font-size: 12px;
-  padding: 8px 16px;
-  border-radius: 20px;
+  font-size: 11.5px;
+  padding: 6px 14px;
+  border-radius: 16px;
   font-weight: bold;
   cursor: pointer;
   border: none;
-  box-shadow: 0 4px 12px rgba(43, 45, 66, 0.2);
+  box-shadow: 0 3px 10px rgba(255, 77, 109, 0.3);
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   white-space: nowrap;
 }
 
 .contact-btn:active {
   transform: scale(0.95);
-  background: #ff4d6d;
+  opacity: 0.9;
 }
 
 .qr-modal {
