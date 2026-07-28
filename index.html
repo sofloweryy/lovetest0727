@@ -126,14 +126,24 @@ body {
   100% { transform: translateY(-3px); }
 }
 
-/* 主内容流，无外层大卡片包裹 */
+/* 主内容流 */
 .main-content {
   width: 100%;
   max-width: 500px;
 }
 
+/* 答题卡片容器：恢复漂亮的白框 */
+.quiz-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.12);
+  border: 2px solid #ffe5e9;
+  position: relative;
+}
+
 h1 {
-  font-size: 24px;
+  font-size: 22px;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -459,7 +469,8 @@ button.submit-btn:active {
   </div>
 
   <div id="contentView" style="display: none;">
-    <div id="quizSection">
+    <!-- 答题卡片容器（白色带边框圆角卡片） -->
+    <div class="quiz-card" id="quizSection">
       <h1>💖 测测另一半会是什么星座&MBTI</h1>
       <p class="subtitle">仅供娱乐，如引起矛盾概不负责（嘿嘿😁</p>
 
@@ -678,7 +689,6 @@ button.submit-btn:active {
           <div class="score-sub">💞 灵魂契合指数 · 命中注定的双向奔赴</div>
         </div>
 
-        <!-- 上下单列分析列表（带回了原汁原味的 Emoji） -->
         <div class="analysis-list">
           <div class="analysis-item">
             <div class="item-title">另一半画像</div>
