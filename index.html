@@ -440,16 +440,25 @@ button.submit-btn:active {
   user-select: all;
 }
 
+/* 改为精致粉嫩渐变样式的弹窗按钮 */
 .close-btn {
-  background: #2b2d42;
+  background: var(--primary-gradient);
   color: #fff;
   border: none;
-  padding: 10px 24px;
-  border-radius: 16px;
+  padding: 13px 24px;
+  border-radius: 14px;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14.5px;
   cursor: pointer;
   width: 100%;
+  box-shadow: 0 5px 15px rgba(255, 77, 109, 0.35);
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.close-btn:active {
+  transform: scale(0.97);
+  opacity: 0.9;
 }
 </style>
 </head>
