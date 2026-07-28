@@ -10,7 +10,7 @@
 :root {
   --primary-gradient: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
   --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #f3e8ff 100%);
-  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: rgba(255, 255, 255, 0.96);
   --text-main: #2b2d42;
   --text-sub: #8d99ae;
   --accent-bg: #fff5f7;
@@ -32,48 +32,98 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 12px 16px 24px 16px;
+  padding: 4px 16px 24px 16px;
   position: relative;
   overflow-x: hidden;
 }
 
-/* 顶部浪漫飘浮气泡与爱心装饰背景 */
-.floating-decorations {
+/* 顶部纯 CSS 绘制的精致可爱氛围元素 */
+.romantic-header-art {
   position: relative;
   width: 100%;
   max-width: 500px;
-  height: 36px;
+  height: 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 12px;
   pointer-events: none;
+}
+
+.art-heart {
+  width: 10px;
+  height: 10px;
+  background: #ff4d6d;
+  transform: rotate(45deg);
+  position: relative;
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+  opacity: 0.7;
+}
+
+.art-heart::before,
+.art-heart::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.art-heart::before {
+  left: -5px;
+  top: 0;
+}
+
+.art-heart::after {
+  left: 0;
+  top: -5px;
+}
+
+.art-star {
+  width: 12px;
+  height: 12px;
+  background: #ffb703;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: starTwinkle 1.5s ease-in-out infinite alternate;
   opacity: 0.8;
 }
 
-.floating-item {
-  font-size: 18px;
-  animation: floatAnim 3s ease-in-out infinite alternate;
+.art-bubble {
+  width: 16px;
+  height: 10px;
+  background: #ff758f;
+  border-radius: 6px;
+  position: relative;
+  opacity: 0.5;
+  animation: floatUp 3s ease-in-out infinite alternate;
 }
 
-.floating-item:nth-child(2) {
-  animation-delay: 1s;
-  font-size: 15px;
+.art-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid #ff758f;
 }
 
-.floating-item:nth-child(3) {
-  animation-delay: 0.5s;
-  font-size: 20px;
+@keyframes pulseGlow {
+  0% { transform: rotate(45deg) scale(0.9); opacity: 0.5; }
+  100% { transform: rotate(45deg) scale(1.15); opacity: 0.85; }
 }
 
-.floating-item:nth-child(4) {
-  animation-delay: 1.5s;
-  font-size: 16px;
+@keyframes starTwinkle {
+  0% { transform: scale(0.8) rotate(0deg); opacity: 0.4; }
+  100% { transform: scale(1.1) rotate(15deg); opacity: 0.9; }
 }
 
-@keyframes floatAnim {
-  0% { transform: translateY(0px) scale(1); }
-  100% { transform: translateY(-6px) scale(1.08); }
+@keyframes floatUp {
+  0% { transform: translateY(2px); }
+  100% { transform: translateY(-3px); }
 }
 
 .container {
@@ -84,8 +134,8 @@ body {
   width: 100%;
   max-width: 500px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  margin-top: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  margin-top: 0;
 }
 
 h1 {
@@ -401,12 +451,12 @@ button.submit-btn:active {
 </head>
 <body>
 
-<!-- 顶部漂浮气泡与爱心装饰 -->
-<div class="floating-decorations">
-  <span class="floating-item">💖</span>
-  <span class="floating-item">💬</span>
-  <span class="floating-item">✨</span>
-  <span class="floating-item">💘</span>
+<!-- 顶部纯CSS手绘可爱元素装饰 -->
+<div class="romantic-header-art">
+  <div class="art-heart"></div>
+  <div class="art-bubble"></div>
+  <div class="art-star"></div>
+  <div class="art-heart"></div>
 </div>
 
 <div class="container" id="mainContainer">
